@@ -1,0 +1,3 @@
+ get /admin để lấy giá trị sessionid
+
+ sau đó thay nó vào cookie để lấy flag

