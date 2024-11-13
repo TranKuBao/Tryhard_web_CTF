@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  server_listen_nc:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: server_listen_nc_chall
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "4449:4449"
+    environment:
+      - FLASK_ENV=production 
