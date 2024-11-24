@@ -1,0 +1,33 @@
+với bài này chúng ta cần bypass qua 
+1 là hàm 
+def vuln():
+    param = request.args.get("param", "").lower()
+    xss_filter = ["frame", "script", "on"]
+    for _ in xss_filter:
+        param = param.replace(_, "*")
+    return param
+    => tìm cách xss sao cho payload ko trùng với filter trên
+
+2. 
+@app.route("/admin/notice_flag")
+def admin_notice_flag():
+    global memo_text
+    if request.remote_addr != "127.0.0.1":
+        return "Access Denied"
+    if request.args.get("userid", "") != "admin":
+        return "Access Denied 2"
+    memo_text += f"[Notice] flag is {FLAG}\n"
+    return "Ok"
+
+=> để lấy được flag chúng ta cần tiền đến hàm này 
+    + với điều kiên là local request    
+    + và para userid = admin
+
+3. làm sao để bypass 127.0.0.1
+=> def read_url(url, cookie={"name": "name", "value": "value"}):
+    cookie.update({"domain": "127.0.0.1"})
+
+    đây sẽ là câu trả lời
+
+4. <img src="payload đoán xem">
+

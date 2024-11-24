@@ -1,0 +1,2 @@
+filter bằng cách PHP sẽ phần biệt hoa vs thường
+còn MYSQl nó query mà không cần phần biết

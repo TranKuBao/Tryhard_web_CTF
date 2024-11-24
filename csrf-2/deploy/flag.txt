@@ -1,0 +1,24 @@
+dmình đã tìm ra 
+vuln(csrf) page
+
+flag
+
+login
+
+Hello admin, flag is DH{c57d0dc12bb9ff023faf9a0e2b49e470a77271ef}
+
+Và làm sao để có thể bypass
+1. Mình có thể tiến hành khai thác hàm index() để đọc Flag 
+    => nhưng chỉ với điều kiền là admin
+
+2. làm sao để để là admin
+    + có thể /login để đang nhập tài khảo admin
+    + khai thác session 
+    ---> tuy nhiên khai thác session vẫn không thể lấy được flag bạn có thể thử
+=> đăng nhập với admin
+
+3. tuy nhiên theo đoạn code ta biết rằng a chỉ biết user là admin nhưng password là flag
+=> mà flag ko đọc được
+
+====> thay đổi mật khẩu admin và đăng nhập lấy Flag
+<img src="từ điện payloaf">

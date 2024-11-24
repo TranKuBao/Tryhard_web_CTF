@@ -1,0 +1,6 @@
+DH{9aeba1a6feed3769ae0915b62db2b4872bec98c2}    
+<FilesMatch "\.(php|phar)$">
+    AddHandler application/x-httpd-php .php
+    AddHandler application/x-httpd-php .phar
+    Require all granted
+</FilesMatch>

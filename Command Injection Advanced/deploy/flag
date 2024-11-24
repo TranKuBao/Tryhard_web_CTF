@@ -1,0 +1,7 @@
+bài này căng
+là này là kết hợp của curl + cmd và exc
+
+curl : là để tải file về cì ko thể nào đẩy file lên
+cmd là tìm cách đọc flag vì flag ko cho đọc và ghi
+exec là mình phải tính toàn khi file được tải về nằm trong thư mục nào ./var/www/html/cache/tmp
+                                                                        =. chõ này sẽ chạy chỗ tmp => phần tích file flag

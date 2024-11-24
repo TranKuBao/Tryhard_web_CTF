@@ -1,0 +1,20 @@
+POST /admin HTTP/1.1
+User-Agent: Admin Browser
+DreamhackUser: admin
+cookie: admin=true
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 12
+
+userid=admin
+
+
+đầu tiên là giao thức POST
+2 là đường dẫn /admin
+3 là User-Agent: Admin Browser trong header request phải như này
+4 là DreamhackUser: admin
+5 là cookie: admin=true liên quan đến cấu hình session
+6 là Content-Type: application/x-www-form-urlencoded
+    Content-Length: 12
+
+    userid=admin
+    => yêu là requets form và mới key=value

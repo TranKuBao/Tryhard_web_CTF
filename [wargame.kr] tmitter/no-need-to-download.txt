@@ -1,0 +1,32 @@
+POST /tmitter.php HTTP/1.1
+Host: host3.dreamhack.games:9343
+Content-Length: 11
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://host3.dreamhack.games:9343
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.199 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://host3.dreamhack.games:9343/?cmd=logout
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cookie: PHPSESSID=bts5s9hlgh8si2lj8til5kfma6
+Connection: close
+
+id=adm&ps=1
+
+
+
+you need login with "admin"s id!
+===========================
+create table tmitter_user(
+    idx int auto_increment primary key,
+    id char(32),
+    ps char(32)
+);
+==============================
+thật ra bài này bypass quan đoạn trến và script khi nhập đầu vào
+và thứ chúng ta cần làm là gì?
+khi nhập quá 32 kí tự thì mySQL sữ tự động xóa bớt đi các kí tự từ thứ 33trở đi
+=> nhập admin+(27 dấu cách)+(các kí tự du thừa)
+ 

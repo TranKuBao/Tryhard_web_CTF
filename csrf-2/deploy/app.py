@@ -1,5 +1,5 @@
-
-from flask import Flask, request, render_template
+#!/usr/bin/python3
+from flask import Flask, request, render_template, make_response, redirect, url_for
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import urllib
@@ -13,6 +13,12 @@ try:
 except:
     FLAG = "[**FLAG**]"
 
+users = {
+    'guest': 'guest',
+    'admin': FLAG
+}
+
+session_storage = {}
 
 def read_url(url, cookie={"name": "name", "value": "value"}):
     cookie.update({"domain": "127.0.0.1"})
@@ -49,7 +55,13 @@ def check_csrf(param, cookie={"name": "name", "value": "value"}):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    session_id = request.cookies.get('sessionid', None)
+    try:
+        username = session_storage[session_id]
+    except KeyError:
+        return render_template('index.html', text='please login')
+
+    return render_template('index.html', text=f'Hello {username}, {"flag is " + FLAG if username == "admin" else "you are not an admin"}')
 
 
 @app.route("/vuln")
@@ -67,33 +79,44 @@ def flag():
         return render_template("flag.html")
     elif request.method == "POST":
         param = request.form.get("param", "")
-        if not check_csrf(param):
+        session_id = os.urandom(16).hex()
+        session_storage[session_id] = 'admin'
+        if not check_csrf(param, {"name":"sessionid", "value": session_id}):
             return '<script>alert("wrong??");history.go(-1);</script>'
 
         return '<script>alert("good");history.go(-1);</script>'
 
 
-memo_text = ""
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    elif request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        try:
+            pw = users[username]
+        except:
+            return '<script>alert("not found user");history.go(-1);</script>'
+        if pw == password:
+            resp = make_response(redirect(url_for('index')) )
+            session_id = os.urandom(8).hex()
+            session_storage[session_id] = username
+            resp.set_cookie('sessionid', session_id)
+            return resp 
+        return '<script>alert("wrong password");history.go(-1);</script>'
 
 
-@app.route("/memo")
-def memo():
-    global memo_text
-    text = request.args.get("memo", None)
-    if text:
-        memo_text += text
-    return render_template("memo.html", memo=memo_text)
+@app.route("/change_password")
+def change_password():
+    pw = request.args.get("pw", "")
+    session_id = request.cookies.get('sessionid', None)
+    try:
+        username = session_storage[session_id]
+    except KeyError:
+        return render_template('index.html', text='please login')
 
-
-@app.route("/admin/notice_flag")
-def admin_notice_flag():
-    global memo_text
-    if request.remote_addr != "127.0.0.1":
-        return "Access Denied"
-    if request.args.get("userid", "") != "admin":
-        return "Access Denied 2"
-    memo_text += f"[Notice] flag is {FLAG}\n"
-    return "Ok"
-
+    users[username] = pw
+    return 'Done'
 
 app.run(host="0.0.0.0", port=8000)

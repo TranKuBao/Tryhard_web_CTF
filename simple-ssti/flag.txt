@@ -1,0 +1,2 @@
+bài này liên quan đến lỗ hỗng SSTI
+https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection#tornado-python
